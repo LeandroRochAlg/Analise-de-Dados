@@ -60,6 +60,10 @@ ipca_data.sort_values('data', inplace=True)
 start_date = datetime.datetime(2020, 2, 1)
 ipca_filtered_data = ipca_data[ipca_data['data'] >= start_date]
 
+# Datas importantes
+pandemic_start = datetime.datetime(2020, 3, 1)
+war_start = datetime.datetime(2022, 2, 24)
+
 # Inicializar o Dash app
 app = dash.Dash(__name__)
 
@@ -67,12 +71,10 @@ app = dash.Dash(__name__)
 app.layout = html.Div(children=[
     html.H1(children='Painel de Indicadores Econômicos do Brasil', className='text-center my-4'),
 
-    dcc.Dropdown(
-        id='year-dropdown',
-        options=[{'label': str(year), 'value': year} for year in range(2020, 2025)],
-        value=[2020],
-        multi=True,
-        placeholder='Selecione o ano'
+    dcc.Interval(
+        id='interval-component',
+        interval=1*60*1000,  # atualiza a cada minuto
+        n_intervals=0
     ),
 
     dcc.Graph(
@@ -92,19 +94,15 @@ app.layout = html.Div(children=[
     )
 ])
 
-# Callback para atualizar os gráficos com base na seleção do dropdown
+# Callback para atualizar os gráficos
 @app.callback(
     [Output('taxaCambio-volatilidade-BRL-USD', 'figure'),
      Output('export-importacao-por-ano', 'figure'),
      Output('unemployment-ipca', 'figure')],
-    [Input('year-dropdown', 'value')]
+    [Input('interval-component', 'n_intervals')]
 )
-def update_graphs(selected_years):
-    if not isinstance(selected_years, list):
-        selected_years = [selected_years]
-
-    if not selected_years:
-        selected_years = list(range(2020, 2025))
+def update_graphs(n_intervals):
+    selected_years = list(range(2020, 2025))
 
     # Atualizar gráfico de câmbio e volatilidade
     filtered_exchange_data = user_data[user_data['Date'].dt.year.isin(selected_years)]
@@ -125,6 +123,20 @@ def update_graphs(selected_years):
                 name='Volatility',
                 line=dict(color='red'),
                 yaxis='y2'
+            ),
+            go.Scatter(
+                x=[pandemic_start, pandemic_start],
+                y=[filtered_exchange_data['MediaValue'].min(), filtered_exchange_data['MediaValue'].max()],
+                mode='lines',
+                name='Início da Pandemia',
+                line=dict(color='black', dash='dash')
+            ),
+            go.Scatter(
+                x=[war_start, war_start],
+                y=[filtered_exchange_data['MediaValue'].min(), filtered_exchange_data['MediaValue'].max()],
+                mode='lines',
+                name='Início da Guerra na Ucrânia',
+                line=dict(color='grey', dash='dash')
             )
         ],
         'layout': go.Layout(
@@ -187,6 +199,20 @@ def update_graphs(selected_years):
                 name='IPCA',
                 line=dict(color='orange'),
                 yaxis='y2'
+            ),
+            go.Scatter(
+                x=[pandemic_start, pandemic_start],
+                y=[filtered_unemployment_data['Taxa'].min(), filtered_unemployment_data['Taxa'].max()],
+                mode='lines',
+                name='Início da Pandemia',
+                line=dict(color='black', dash='dash')
+            ),
+            go.Scatter(
+                x=[war_start, war_start],
+                y=[filtered_unemployment_data['Taxa'].min(), filtered_unemployment_data['Taxa'].max()],
+                mode='lines',
+                name='Início da Guerra na Ucrânia',
+                line=dict(color='grey', dash='dash')
             )
         ],
         'layout': go.Layout(
