@@ -51,12 +51,21 @@ unemployment_data['Date'] = pd.to_datetime(unemployment_data['Ano'].astype(str) 
 # Filtrar dados de desemprego para os anos de 2020 a 2024
 unemployment_data_filtered = unemployment_data[(unemployment_data['Ano'] >= 2020) & (unemployment_data['Ano'] <= 2024)]
 
+# Carregar os dados do IPCA
+ipca_data = pd.read_csv('Dados Tratados/IPCA-TRATADO.csv')
+ipca_data['data'] = pd.to_datetime(ipca_data['data'], format='%d/%m/%Y')
+ipca_data.sort_values('data', inplace=True)
+
+# Filtrar o período de interesse (dois anos antes da guerra até o presente)
+start_date = datetime.datetime(2020, 2, 1)
+ipca_filtered_data = ipca_data[ipca_data['data'] >= start_date]
+
 # Inicializar o Dash app
 app = dash.Dash(__name__)
 
 # Layout do app
 app.layout = html.Div(children=[
-    html.H1(children='Painel de Análises Econômicas do Brasil', className='text-center my-4'),
+    html.H1(children='Painel de Indicadores Econômicos do Brasil', className='text-center my-4'),
 
     dcc.Dropdown(
         id='year-dropdown',
@@ -67,19 +76,19 @@ app.layout = html.Div(children=[
     ),
 
     dcc.Graph(
-        id='taxaCambio-volatilidade-BRL-USD'
+        id='taxaCambio-volatilidade-BRL-USD',
     ),
     
     html.H2(children='Exportação e Importação do Brasil (2020-2024)', className='text-center my-4'),
 
     dcc.Graph(
-        id='export-importacao-por-ano'
+        id='export-importacao-por-ano',
     ),
 
-    html.H2(children='Taxa de Desemprego no Brasil (2020-2024)', className='text-center my-4'),
+    html.H2(children='Taxa de Desemprego e IPCA', className='text-center my-4'),
 
     dcc.Graph(
-        id='taxa-desemprego-brasil'
+        id='unemployment-ipca',
     )
 ])
 
@@ -87,7 +96,7 @@ app.layout = html.Div(children=[
 @app.callback(
     [Output('taxaCambio-volatilidade-BRL-USD', 'figure'),
      Output('export-importacao-por-ano', 'figure'),
-     Output('taxa-desemprego-brasil', 'figure')],
+     Output('unemployment-ipca', 'figure')],
     [Input('year-dropdown', 'value')]
 )
 def update_graphs(selected_years):
@@ -158,28 +167,39 @@ def update_graphs(selected_years):
         )
     }
 
-    # Atualizar gráfico de desemprego
-    filtered_unemployment_data = unemployment_data_filtered[unemployment_data_filtered['Ano'].isin(selected_years)]
+    # Atualizar gráfico de desemprego e IPCA
+    filtered_unemployment_data = unemployment_data[unemployment_data['Date'].dt.year.isin(selected_years)]
+    filtered_ipca_data = ipca_data[ipca_data['data'].dt.year.isin(selected_years)]
 
-    unemployment_figure = {
+    unemployment_ipca_figure = {
         'data': [
             go.Scatter(
                 x=filtered_unemployment_data['Date'],
                 y=filtered_unemployment_data['Taxa'],
-                mode='lines+markers',
+                mode='lines',
                 name='Taxa de Desemprego',
-                line=dict(color='orange')
+                line=dict(color='purple')
+            ),
+            go.Scatter(
+                x=filtered_ipca_data['data'],
+                y=filtered_ipca_data['valor'],
+                mode='lines',
+                name='IPCA',
+                line=dict(color='orange'),
+                yaxis='y2'
             )
         ],
         'layout': go.Layout(
-            title='Taxa de Desemprego no Brasil (2020-2024)',
+            title='Taxa de Desemprego e IPCA',
             xaxis=dict(title='Date'),
-            yaxis=dict(title='Taxa de Desemprego (%)'),
+            yaxis=dict(title='Taxa de Desemprego', titlefont=dict(color='purple'), tickfont=dict(color='purple')),
+            yaxis2=dict(title='IPCA', titlefont=dict(color='orange'), tickfont=dict(color='orange'), overlaying='y', side='right'),
+            legend=dict(x=0, y=1.2),
             margin=dict(l=50, r=50, t=50, b=50)
         )
     }
 
-    return exchange_figure, export_import_figure, unemployment_figure
+    return exchange_figure, export_import_figure, unemployment_ipca_figure
 
 if __name__ == '__main__':
     app.run_server(debug=True)
