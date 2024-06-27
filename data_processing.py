@@ -10,7 +10,6 @@ def load_data():
     user_data['Volatility'] = user_data['Log_Returns'].rolling(window=30).std() * np.sqrt(252)
 
     start_date = datetime.datetime(2020, 2, 1)
-    filtered_data = user_data[user_data['Date'] >= start_date]
 
     export_data = pd.read_csv('Dados Tratados/Exportação-TRATADO.csv')
     import_data = pd.read_csv('Dados Tratados/Importação-TRATADO.csv')
@@ -20,9 +19,6 @@ def load_data():
 
     export_data_brazil = export_data[export_data['Países'] == 'Brasil']
     import_data_brazil = import_data[import_data['Países'] == 'Brasil']
-
-    export_data_brazil = export_data_brazil[(export_data_brazil['Ano'] >= 2018) & (export_data_brazil['Ano'] <= 2024)]
-    import_data_brazil = import_data_brazil[(import_data_brazil['Ano'] >= 2018) & (import_data_brazil['Ano'] <= 2024)]
 
     export_data_grouped = export_data_brazil.groupby('Ano')['Valor US$ FOB'].sum().reset_index()
     import_data_grouped = import_data_brazil.groupby('Ano')['Valor US$ FOB'].sum().reset_index()
