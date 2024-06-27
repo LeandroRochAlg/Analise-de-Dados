@@ -10,7 +10,7 @@ navbar = dbc.NavbarSimple(
     ],
     brand="Painel de Indicadores Econômicos",
     brand_href="/",
-    color="primary",
+    color="red",
     dark=True,
 )
 
