@@ -1,6 +1,6 @@
 from dash.dependencies import Input, Output
 import plotly.graph_objs as go
-from data_processing import user_data, unemployment_data_filtered, ipca_filtered_data, pandemic_start, war_start
+from data_processing import user_data, unemployment_data_filtered, ipca_filtered_data, pandemic_start, war_start, usd_eur_data, dx_y_data
 
 def register_callbacks(app):
     @app.callback(
@@ -59,3 +59,61 @@ def register_callbacks(app):
             )
         }
         return dynamic_figure
+
+    @app.callback(
+        Output('exchange-volatility-graph', 'figure'),
+        [Input('exchange-dropdown', 'value')]
+    )
+    def update_exchange_volatility_graph(selected_exchange):
+        if selected_exchange == 'BRL/USD':
+            data = user_data
+            name = 'BRL/USD'
+        elif selected_exchange == 'USD/EUR':
+            data = usd_eur_data
+            name = 'USD/EUR'
+        elif selected_exchange == 'DX-Y.NYB':
+            data = dx_y_data
+            name = 'DX-Y.NYB'
+
+        figure = {
+            'data': [
+                go.Scatter(
+                    x=data['Date'],
+                    y=data['MediaValue'],
+                    mode='lines',
+                    name=name,
+                    line=dict(color='blue')
+                ),
+                go.Scatter(
+                    x=data['Date'],
+                    y=data['Volatility'],
+                    mode='lines',
+                    name='Volatility',
+                    line=dict(color='red'),
+                    yaxis='y2'
+                ),
+                go.Scatter(
+                    x=[pandemic_start, pandemic_start],
+                    y=[data['MediaValue'].min(), data['MediaValue'].max()],
+                    mode='lines',
+                    name='Início da Pandemia',
+                    line=dict(color='black', dash='dash')
+                ),
+                go.Scatter(
+                    x=[war_start, war_start],
+                    y=[data['MediaValue'].min(), data['MediaValue'].max()],
+                    mode='lines',
+                    name='Início da Guerra na Ucrânia',
+                    line=dict(color='grey', dash='dash')
+                )
+            ],
+            'layout': go.Layout(
+                title=f'Taxa de Câmbio e Volatilidade {name}',
+                xaxis=dict(title='Date'),
+                yaxis=dict(title=name, titlefont=dict(color='blue'), tickfont=dict(color='blue')),
+                yaxis2=dict(title='Volatility', titlefont=dict(color='red'), tickfont=dict(color='red'), overlaying='y', side='right'),
+                legend=dict(x=0, y=1.2),
+                margin=dict(l=50, r=50, t=50, b=50)
+            )
+        }
+        return figure

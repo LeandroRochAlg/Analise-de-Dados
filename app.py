@@ -6,6 +6,7 @@ import dash_bootstrap_components as dbc
 from data_processing import user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data, pandemic_start, war_start
 from layout import navbar, content
 from pages.export_import import register_export_import_callbacks
+from callbacks import register_callbacks
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = html.Div([dcc.Location(id='url', refresh=False), navbar, content])
@@ -28,6 +29,9 @@ def display_page(pathname):
 
 # Registrar callbacks específicos da página de exportação/importação
 register_export_import_callbacks(app)
+
+# Registrar callbacks gerais
+register_callbacks(app)
 
 if __name__ == '__main__':
     app.run_server(debug=True)

@@ -45,9 +45,15 @@ dynamic_figure = {
 }
 
 layout = html.Div([
-    html.H2("Taxa de Câmbio e Volatilidade BRL/USD", className='text-center my-4'),
-    dcc.Graph(
-        id='taxaCambio-volatilidade-BRL-USD',
-        figure=dynamic_figure
+    html.H2("Taxa de Câmbio e Volatilidade", className='text-center my-4'),
+    dcc.Dropdown(
+        id='exchange-dropdown',
+        options=[
+            {'label': 'BRL/USD', 'value': 'BRL/USD'},
+            {'label': 'USD/EUR', 'value': 'USD/EUR'},
+            {'label': 'DX-Y.NYB', 'value': 'DX-Y.NYB'}
+        ],
+        value='BRL/USD'
     ),
+    dcc.Graph(id='exchange-volatility-graph')
 ])

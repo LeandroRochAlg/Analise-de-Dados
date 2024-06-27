@@ -9,6 +9,18 @@ def load_data():
     user_data['Log_Returns'] = np.log(user_data['MediaValue'] / user_data['MediaValue'].shift(1))
     user_data['Volatility'] = user_data['Log_Returns'].rolling(window=30).std() * np.sqrt(252)
 
+    usd_eur_data = pd.read_csv('Dados Tratados/USD-EUR-TRATADO.csv')
+    usd_eur_data['Date'] = pd.to_datetime(usd_eur_data['Date'])
+    usd_eur_data.sort_values('Date', inplace=True)
+    usd_eur_data['Log_Returns'] = np.log(usd_eur_data['MediaValue'] / usd_eur_data['MediaValue'].shift(1))
+    usd_eur_data['Volatility'] = usd_eur_data['Log_Returns'].rolling(window=30).std() * np.sqrt(252)
+
+    dx_y_data = pd.read_csv('Dados Tratados/DX-Y.NYB-TRATADO.csv')
+    dx_y_data['Date'] = pd.to_datetime(dx_y_data['Date'])
+    dx_y_data.sort_values('Date', inplace=True)
+    dx_y_data['Log_Returns'] = np.log(dx_y_data['MediaValue'] / dx_y_data['MediaValue'].shift(1))
+    dx_y_data['Volatility'] = dx_y_data['Log_Returns'].rolling(window=30).std() * np.sqrt(252)
+
     start_date = datetime.datetime(2020, 2, 1)
 
     export_data = pd.read_csv('Dados Tratados/Exportação-TRATADO.csv')
@@ -37,8 +49,8 @@ def load_data():
     ipca_data.sort_values('data', inplace=True)
     ipca_filtered_data = ipca_data[ipca_data['data'] >= start_date]
 
-    return user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data
+    return user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data, usd_eur_data, dx_y_data
 
-user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data = load_data()
+user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data, usd_eur_data, dx_y_data = load_data()
 pandemic_start = datetime.datetime(2020, 3, 1)
 war_start = datetime.datetime(2022, 2, 24)
