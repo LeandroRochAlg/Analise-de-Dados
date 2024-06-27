@@ -62,36 +62,6 @@ def register_callbacks(app):
         return dynamic_figure
 
     @app.callback(
-        Output('export-importacao-por-ano', 'figure'),
-        Input('interval-component', 'n_intervals')
-    )
-    def update_export_import_graph(n_intervals):
-        export_import_figure = {
-            'data': [
-                go.Bar(
-                    x=export_data_grouped['Ano'],
-                    y=export_data_grouped['Valor US$ FOB'],
-                    name='Exportação',
-                    marker=dict(color='green')
-                ),
-                go.Bar(
-                    x=import_data_grouped['Ano'],
-                    y=import_data_grouped['Valor US$ FOB'],
-                    name='Importação',
-                    marker=dict(color='red')
-                )
-            ],
-            'layout': go.Layout(
-                title='Exportação e Importação do Brasil (2020-2024)',
-                xaxis=dict(title='Ano', type='category'),
-                yaxis=dict(title='Valor US$ FOB'),
-                barmode='stack',
-                margin=dict(l=50, r=50, t=50, b=100)
-            )
-        }
-        return export_import_figure
-
-    @app.callback(
         Output('unemployment-ipca', 'figure'),
         Input('interval-component', 'n_intervals')
     )

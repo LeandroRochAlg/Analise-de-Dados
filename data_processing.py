@@ -15,6 +15,9 @@ def load_data():
     export_data = pd.read_csv('Dados Tratados/Exportação-TRATADO.csv')
     import_data = pd.read_csv('Dados Tratados/Importação-TRATADO.csv')
 
+    export_data = export_data[export_data['Ano'] >= 2018]
+    import_data = import_data[import_data['Ano'] >= 2018]
+
     export_data_brazil = export_data[export_data['Países'] == 'Brasil']
     import_data_brazil = import_data[import_data['Países'] == 'Brasil']
 
@@ -38,8 +41,8 @@ def load_data():
     ipca_data.sort_values('data', inplace=True)
     ipca_filtered_data = ipca_data[ipca_data['data'] >= start_date]
 
-    return user_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data
+    return user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data
 
-user_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data = load_data()
+user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data = load_data()
 pandemic_start = datetime.datetime(2020, 3, 1)
 war_start = datetime.datetime(2022, 2, 24)
