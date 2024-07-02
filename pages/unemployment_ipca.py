@@ -44,9 +44,12 @@ unemployment_ipca_figure = {
 }
 
 layout = html.Div([
-    html.H2("Taxa de Desemprego e IPCA", className='text-center my-4'),
+    html.H2("Taxa de Desemprego e IPCA de bens não-duráveis", className='text-center my-4'),
     dcc.Graph(
         id='unemployment-ipca',
         figure=unemployment_ipca_figure
     ),
+    html.P("Aqui você pode visualizar a evolução da taxa de desemprego e do IPCA de bens não-duráveis ao longo do tempo."),
+    html.P(["O ", html.Strong("IPCA"), " é o índice oficial de inflação do Brasil, calculado pelo IBGE. Ele mede a variação de preços de um conjunto de produtos e serviços consumidos pelas famílias brasileiras com rendimentos de 1 a 40 salários mínimos."]),
+    html.P(["A ", html.Strong("Taxa de Desemprego"), " é a proporção da força de trabalho que está desempregada e procura ativamente por um emprego remunerado."]),
 ])
