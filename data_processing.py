@@ -21,7 +21,7 @@ def load_data():
     dx_y_data['Log_Returns'] = np.log(dx_y_data['MediaValue'] / dx_y_data['MediaValue'].shift(1))
     dx_y_data['Volatility'] = dx_y_data['Log_Returns'].rolling(window=30).std() * np.sqrt(252)
 
-    start_date = datetime.datetime(2020, 2, 1)
+    start_date = datetime.datetime(2019, 6, 3)
 
     export_data = pd.read_csv('Dados Tratados/Exportação-TRATADO.csv')
     import_data = pd.read_csv('Dados Tratados/Importação-TRATADO.csv')
@@ -42,7 +42,7 @@ def load_data():
     }
     unemployment_data['Mes'] = unemployment_data['Mes'].map(month_map)
     unemployment_data['Date'] = pd.to_datetime(unemployment_data['Ano'].astype(str) + '-' + unemployment_data['Mes'] + '-01')
-    unemployment_data_filtered = unemployment_data[(unemployment_data['Ano'] >= 2020) & (unemployment_data['Ano'] <= 2024)]
+    unemployment_data_filtered = unemployment_data[unemployment_data['Date'] >= start_date]
 
     ipca_data = pd.read_csv('Dados Tratados/IPCA-TRATADO.csv')
     ipca_data['data'] = pd.to_datetime(ipca_data['data'], format='%d/%m/%Y')
