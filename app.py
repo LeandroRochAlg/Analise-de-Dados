@@ -34,4 +34,4 @@ register_export_import_callbacks(app)
 register_callbacks(app)
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
