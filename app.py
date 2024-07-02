@@ -33,5 +33,6 @@ register_export_import_callbacks(app)
 # Registrar callbacks gerais
 register_callbacks(app)
 
+server = app.server
 if __name__ == '__main__':
     app.run_server(debug=True)
