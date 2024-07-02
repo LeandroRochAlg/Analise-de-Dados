@@ -108,7 +108,7 @@ def register_callbacks(app):
                 )
             ],
             'layout': go.Layout(
-                title=f'Taxa de Câmbio e Volatilidade {name}',
+                title=f'{name}',
                 xaxis=dict(title='Date'),
                 yaxis=dict(title=name, titlefont=dict(color='blue'), tickfont=dict(color='blue')),
                 yaxis2=dict(title='Volatility', titlefont=dict(color='red'), tickfont=dict(color='red'), overlaying='y', side='right'),

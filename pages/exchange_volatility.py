@@ -35,7 +35,6 @@ dynamic_figure = {
         )
     ],
     'layout': go.Layout(
-        title='Painel de Taxa de Câmbio e Volatilidade BRL/USD',
         xaxis=dict(title='Date'),
         yaxis=dict(title='BRL/USD', titlefont=dict(color='blue'), tickfont=dict(color='blue')),
         yaxis2=dict(title='Volatility', titlefont=dict(color='red'), tickfont=dict(color='red'), overlaying='y', side='right'),

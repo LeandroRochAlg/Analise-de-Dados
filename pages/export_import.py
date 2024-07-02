@@ -8,7 +8,7 @@ countries = export_data['Países'].unique()
 
 # Layout da página com o dropdown
 layout = html.Div([
-    html.H2("Exportação e Importação do Brasil (2020-2024)", className='text-center my-4'),
+    html.H2("Exportação e Importação (2020-2024)", className='text-center my-4'),
     dcc.Dropdown(
         id='country-dropdown',
         options=[{'label': country, 'value': country} for country in countries],
@@ -50,7 +50,6 @@ def register_export_import_callbacks(app):
         figure = {
             'data': data,
             'layout': go.Layout(
-                title='Exportação e Importação (2020-2024)',
                 xaxis=dict(title='Ano', type='category'),
                 yaxis=dict(title='Valor US$ FOB'),
                 barmode='group',  # Modo de barras agrupadas

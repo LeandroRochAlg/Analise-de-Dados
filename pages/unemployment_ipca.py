@@ -35,7 +35,6 @@ unemployment_ipca_figure = {
         )
     ],
     'layout': go.Layout(
-        title='Taxa de Desemprego e IPCA',
         xaxis=dict(title='Date'),
         yaxis=dict(title='Taxa de Desemprego', titlefont=dict(color='purple'), tickfont=dict(color='purple')),
         yaxis2=dict(title='IPCA', titlefont=dict(color='orange'), tickfont=dict(color='orange'), overlaying='y', side='right'),
