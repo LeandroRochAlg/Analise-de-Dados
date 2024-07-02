@@ -68,12 +68,15 @@ def register_callbacks(app):
         if selected_exchange == 'BRL/USD':
             data = user_data
             name = 'BRL/USD'
+            link = 'https://finance.yahoo.com/quote/BRL%3DX/history/'
         elif selected_exchange == 'USD/EUR':
             data = usd_eur_data
             name = 'USD/EUR'
+            link = 'https://finance.yahoo.com/quote/EUR%3DX/history/'
         elif selected_exchange == 'DX-Y.NYB':
             data = dx_y_data
             name = 'DX-Y.NYB'
+            link = 'https://finance.yahoo.com/quote/DX-Y.NYB/history/'
 
         figure = {
             'data': [
@@ -113,7 +116,18 @@ def register_callbacks(app):
                 yaxis=dict(title=name, titlefont=dict(color='blue'), tickfont=dict(color='blue')),
                 yaxis2=dict(title='Volatility', titlefont=dict(color='red'), tickfont=dict(color='red'), overlaying='y', side='right'),
                 legend=dict(x=0, y=1.2),
-                margin=dict(l=50, r=50, t=50, b=50)
+                margin=dict(l=50, r=50, t=50, b=50),
+                annotations=[
+                    dict(
+                        x=0,
+                        y=-0.11,
+                        xref='paper',
+                        yref='paper',
+                        showarrow=False,
+                        text=f'<a href="{link}" target="_blank">Fonte: Yahoo Finance</a>',
+                        font=dict(size=12),
+                    )
+                ]
             )
         }
         return figure

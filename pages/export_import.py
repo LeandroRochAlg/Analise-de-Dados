@@ -55,7 +55,18 @@ def register_export_import_callbacks(app):
                 xaxis=dict(title='Ano', type='category'),
                 yaxis=dict(title='Valor US$ FOB'),
                 barmode='group',  # Modo de barras agrupadas
-                margin=dict(l=50, r=50, t=50, b=100)
+                margin=dict(l=50, r=50, t=50, b=100),
+                annotations=[
+                    dict(
+                        x=0,
+                        y=-0.11,
+                        xref='paper',
+                        yref='paper',
+                        showarrow=False,
+                        text=f'<a href="https://comexstat.mdic.gov.br/pt/geral" target="_blank">Fonte: Comex Stat</a>',
+                        font=dict(size=12),
+                    )
+                ]
             )
         }
         return figure
