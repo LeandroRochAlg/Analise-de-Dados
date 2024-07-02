@@ -35,8 +35,8 @@ dynamic_figure = {
         )
     ],
     'layout': go.Layout(
-        xaxis=dict(title='Date'),
-        yaxis=dict(title='BRL/USD', titlefont=dict(color='blue'), tickfont=dict(color='blue')),
+        xaxis=dict(title='Data', showgrid=False),
+        yaxis=dict(title='BRL/USD', titlefont=dict(color='blue'), tickfont=dict(color='blue'), showgrid=False),
         yaxis2=dict(title='Volatility', titlefont=dict(color='red'), tickfont=dict(color='red'), overlaying='y', side='right'),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),

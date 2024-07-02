@@ -27,7 +27,7 @@ unemployment_figure = {
         )
     ],
     'layout': go.Layout(
-        xaxis=dict(title='Date'),
+        xaxis=dict(title='Date', showgrid=False),
         yaxis=dict(title='Taxa de Desemprego', titlefont=dict(color='purple'), tickfont=dict(color='purple')),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),
@@ -70,7 +70,7 @@ ipca_figure = {
         )
     ],
     'layout': go.Layout(
-        xaxis=dict(title='Date'),
+        xaxis=dict(title='Date', showgrid=False),
         yaxis=dict(title='IPCA', titlefont=dict(color='orange'), tickfont=dict(color='orange')),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),

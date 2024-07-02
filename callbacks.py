@@ -112,9 +112,9 @@ def register_callbacks(app):
             ],
             'layout': go.Layout(
                 title=f'{name}',
-                xaxis=dict(title='Date'),
-                yaxis=dict(title=name, titlefont=dict(color='blue'), tickfont=dict(color='blue')),
-                yaxis2=dict(title='Volatilidade', titlefont=dict(color='rgba(0, 0, 255, 0.5)'), tickfont=dict(color='rgba(0, 0, 255, 0.5)'), overlaying='y', side='right'),
+                xaxis=dict(title='Data', showgrid=False),
+                yaxis=dict(title=name, titlefont=dict(color='blue'), tickfont=dict(color='blue'), showgrid=False),
+                yaxis2=dict(title='Volatilidade', titlefont=dict(color='rgba(0, 0, 255, 0.5)'), tickfont=dict(color='rgba(0, 0, 255, 0.5)'), overlaying='y', side='right', showgrid=False),
                 legend=dict(x=0, y=1.2),
                 margin=dict(l=50, r=50, t=50, b=50),
                 annotations=[
