@@ -91,8 +91,8 @@ def register_callbacks(app):
                     x=data['Date'],
                     y=data['Volatility'],
                     mode='lines',
-                    name='Volatility',
-                    line=dict(color='red'),
+                    name=f'Volatilidade {name}',
+                    line=dict(color='rgba(0, 0, 255, 0.5)'),
                     yaxis='y2'
                 ),
                 go.Scatter(
@@ -114,7 +114,7 @@ def register_callbacks(app):
                 title=f'{name}',
                 xaxis=dict(title='Date'),
                 yaxis=dict(title=name, titlefont=dict(color='blue'), tickfont=dict(color='blue')),
-                yaxis2=dict(title='Volatility', titlefont=dict(color='red'), tickfont=dict(color='red'), overlaying='y', side='right'),
+                yaxis2=dict(title='Volatilidade', titlefont=dict(color='rgba(0, 0, 255, 0.5)'), tickfont=dict(color='rgba(0, 0, 255, 0.5)'), overlaying='y', side='right'),
                 legend=dict(x=0, y=1.2),
                 margin=dict(l=50, r=50, t=50, b=50),
                 annotations=[
