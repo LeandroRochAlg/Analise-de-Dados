@@ -8,7 +8,6 @@ def load_data():
     user_data.sort_values('Date', inplace=True)
     user_data['Log_Returns'] = np.log(user_data['MediaValue'] / user_data['MediaValue'].shift(1))
     user_data['Volatility'] = user_data['Log_Returns'].rolling(window=10).std() * np.sqrt(52)
-    print(user_data.head())
 
     usd_eur_data = pd.read_csv('Dados Tratados/USD-EUR-TRATADO.csv')
     usd_eur_data['Date'] = pd.to_datetime(usd_eur_data['Date'])
