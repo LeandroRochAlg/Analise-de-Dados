@@ -107,7 +107,7 @@ def register_callbacks(app):
                     y=[data['MediaValue'].min(), data['MediaValue'].max()],
                     mode='lines',
                     name='Início da Guerra na Ucrânia',
-                    line=dict(color='grey', dash='dash')
+                    line=dict(color='grey', dash='dot')
                 )
             ],
             'layout': go.Layout(

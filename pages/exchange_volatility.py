@@ -33,7 +33,7 @@ dynamic_figure = {
                max(user_data['MediaValue'].max(), usd_eur_data['MediaValue'].max())],
             mode='lines',
             name='Início da Guerra na Ucrânia',
-            line=dict(color='grey', dash='dash')
+            line=dict(color='grey', dash='dot')
         )
     ],
     'layout': go.Layout(

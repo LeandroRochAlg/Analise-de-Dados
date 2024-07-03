@@ -23,7 +23,7 @@ unemployment_figure = {
             y=[unemployment_data_filtered['Taxa'].min(), unemployment_data_filtered['Taxa'].max()],
             mode='lines',
             name='Início da Guerra na Ucrânia',
-            line=dict(color='grey', dash='dash')
+            line=dict(color='grey', dash='dot')
         )
     ],
     'layout': go.Layout(
@@ -66,7 +66,7 @@ ipca_figure = {
             y=[ipca_filtered_data['valor'].min(), ipca_filtered_data['valor'].max()],
             mode='lines',
             name='Início da Guerra na Ucrânia',
-            line=dict(color='grey', dash='dash')
+            line=dict(color='grey', dash='dot')
         )
     ],
     'layout': go.Layout(
