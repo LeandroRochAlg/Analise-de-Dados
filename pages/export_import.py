@@ -18,6 +18,7 @@ layout = html.Div([
     dcc.Graph(id='export-importacao-por-ano'),
     html.P("Aqui você pode visualizar a evolução da exportação e importação de produtos entre 2020 e 2024."),
     html.P(["Os dados são referentes ao valor FOB (Free on Board), que é o valor total das mercadorias exportadas/importadas, incluindo o custo de transporte e seguro até o porto de destino."]),
+    html.P(["Selecione os países para os quais o Brasil exportou/importou que desejar no menu suspenso acima para visualizar os dados."]),
 ])
 
 def register_export_import_callbacks(app):
