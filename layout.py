@@ -7,6 +7,7 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(dbc.NavLink("Taxa de Câmbio e Volatilidade", href="/exchange-volatility")),
         dbc.NavItem(dbc.NavLink("Exportação e Importação", href="/export-import")),
         dbc.NavItem(dbc.NavLink("Desemprego e IPCA", href="/unemployment-ipca")),
+        dbc.NavItem(dbc.NavLink("Commodities", href="/commodities")),
     ],
     brand="Painel de Indicadores Econômicos",
     brand_href="/",

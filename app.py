@@ -23,6 +23,9 @@ def display_page(pathname):
     elif pathname == '/unemployment-ipca':
         from pages.unemployment_ipca import layout as ui_layout
         return ui_layout
+    elif pathname == '/commodities':
+        from pages.commodities import layout as commodities_layout
+        return commodities_layout
     else:
         from pages.home import layout as home_layout
         return home_layout

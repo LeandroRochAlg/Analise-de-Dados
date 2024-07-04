@@ -49,8 +49,13 @@ def load_data():
     ipca_data.sort_values('data', inplace=True)
     ipca_filtered_data = ipca_data[ipca_data['data'] >= start_date]
 
-    return user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data, usd_eur_data, dx_y_data
+    commodities_data = pd.read_csv('Dados Tratados/CMO-Historical-TRATADO.csv')
+    commodities_data['Date'] = pd.to_datetime(commodities_data['Date'])
+    commodities_data.sort_values('Date', inplace=True)
+    filtered_commodities_data = commodities_data[commodities_data['Date'] >= start_date]
 
-user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data, usd_eur_data, dx_y_data = load_data()
+    return user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data, usd_eur_data, dx_y_data, filtered_commodities_data
+
+user_data, export_data, import_data, export_data_grouped, import_data_grouped, unemployment_data_filtered, ipca_filtered_data, usd_eur_data, dx_y_data, filtered_commodities_data = load_data()
 pandemic_start = datetime.datetime(2020, 3, 1)
 war_start = datetime.datetime(2022, 2, 24)
