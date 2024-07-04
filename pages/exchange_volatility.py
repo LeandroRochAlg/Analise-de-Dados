@@ -16,7 +16,7 @@ dynamic_figure = {
             y=usd_eur_data['MediaValue'],
             mode='lines',
             name='EUR/USD',
-            line=dict(color='blue'),
+            line=dict(color='#1f77b4'),
             yaxis='y2'
         ),
         go.Scatter(
@@ -39,7 +39,7 @@ dynamic_figure = {
     'layout': go.Layout(
         xaxis=dict(title='Date', showgrid=False),
         yaxis=dict(title='BRL-USD', showgrid=False, titlefont=dict(color='green'), tickfont=dict(color='green')),
-        yaxis2=dict(title='EUR/USD', overlaying='y', side='right', showgrid=False, titlefont=dict(color='blue'), tickfont=dict(color='blue')),
+        yaxis2=dict(title='EUR/USD', overlaying='y', side='right', showgrid=False, titlefont=dict(color='#1f77b4'), tickfont=dict(color='#1f77b4')),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),
         annotations=[

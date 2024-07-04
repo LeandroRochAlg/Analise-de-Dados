@@ -52,7 +52,7 @@ ipca_figure = {
             y=ipca_filtered_data['valor'],
             mode='lines',
             name='IPCA',
-            line=dict(color='#0f5132')
+            line=dict(color='#5cb85c')
         ),
             go.Scatter(
             x=[pandemic_start, pandemic_start],
