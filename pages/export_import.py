@@ -1,10 +1,19 @@
 from dash import dcc, html
 import plotly.graph_objs as go
+import plotly.express as px
 from dash.dependencies import Input, Output
 from data_processing import export_data, import_data
+from utils import country_translation as ct
+
+# Adicionar coluna com códigos ISO-3166
+export_data['country_code'] = export_data['Países'].apply(ct.translate_country)
+import_data['country_code'] = import_data['Países'].apply(ct.translate_country)
 
 # Obter a lista de países únicos
-countries = export_data['Países'].unique()
+countries = sorted(export_data['Países'].unique())
+
+# Obter a lista de anos únicos
+years = export_data['Ano'].unique()
 
 # Layout da página com o dropdown
 layout = html.Div([
@@ -16,9 +25,20 @@ layout = html.Div([
         multi=True
     ),
     dcc.Graph(id='export-importacao-por-ano'),
-    html.P("Aqui você pode visualizar a evolução da exportação e importação de produtos entre 2020 e 2024."),
-    html.P(["Os dados são referentes ao valor FOB (Free on Board), que é o valor total das mercadorias exportadas/importadas, incluindo o custo de transporte e seguro até o porto de destino."]),
     html.P(["Selecione os países para os quais o Brasil exportou/importou que desejar no menu suspenso acima para visualizar os dados."]),
+    html.P("Aqui você pode visualizar a evolução da exportação e importação de produtos entre 2018 e 2024."),
+    html.H2("Exportação e Importação (2020-2024)", className='text-center my-4'),
+    dcc.Dropdown(
+        id='year-dropdown',
+        options=[{'label': year, 'value': year} for year in years],
+        value=years[0],  # Valor inicial como o primeiro ano disponível
+        clearable=False
+    ),
+    dcc.Graph(id='export-map'),
+    dcc.Graph(id='import-map'),
+    html.P(["Selecione o ano desejado no menu suspenso acima para visualizar os dados."]),
+    html.P(["Os mapas acima mostram a distribuição geográfica das exportações e importações do Brasil para os países exibidos."]),
+    html.P(["Os dados são referentes ao valor FOB (Free on Board), que é o valor total das mercadorias exportadas/importadas, incluindo o custo de transporte e seguro até o porto de destino."]),
 ])
 
 def register_export_import_callbacks(app):
@@ -71,3 +91,45 @@ def register_export_import_callbacks(app):
             )
         }
         return figure
+
+    @app.callback(
+        [Output('export-map', 'figure'),
+         Output('import-map', 'figure')],
+        [Input('year-dropdown', 'value')]
+    )
+    def update_maps(selected_year):
+        # Filtrar dados pelo ano selecionado
+        export_data_year = export_data[export_data['Ano'] == selected_year]
+        import_data_year = import_data[import_data['Ano'] == selected_year]
+
+        # Filtrar apenas os países com código válido
+        export_data_year = export_data_year[export_data_year['country_code'].notna()]
+        import_data_year = import_data_year[import_data_year['country_code'].notna()]
+
+        # Dados para exportação
+        export_fig = px.choropleth(
+            export_data_year,
+            locations="country_code",
+            locationmode="ISO-3",
+            color="Valor US$ FOB",
+            hover_name="Países",
+            color_continuous_scale=px.colors.sequential.Greens,
+            title=f'Exportação {selected_year}',
+        )
+
+        # Dados para importação
+        import_fig = px.choropleth(
+            import_data_year,
+            locations="country_code",
+            locationmode="ISO-3",
+            color="Valor US$ FOB",
+            hover_name="Países",
+            color_continuous_scale=px.colors.sequential.Greens,
+            title=f'Importação {selected_year}',
+        )
+
+        # Atualizar layout dos gráficos
+        export_fig.update_layout(margin=dict(l=0, r=0, t=50, b=0))
+        import_fig.update_layout(margin=dict(l=0, r=0, t=50, b=0))
+
+        return export_fig, import_fig
