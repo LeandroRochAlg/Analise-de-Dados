@@ -5,10 +5,10 @@ Este repositório contém um dashboard interativo desenvolvido para analisar os 
 ## Conteúdo do Repositório
 
 - **app.py**: Arquivo principal que contém a aplicação Dash para o dashboard.
-- **data/**: Pasta que contém os dados utilizados na análise.
+- **Dados Tratados/**: Pasta que contém os dados utilizados na análise.
 - **assets/**: Pasta para arquivos estáticos como CSS e imagens.
-- **layouts/**: Pasta que contém os layouts das diferentes páginas do dashboard.
-- **callbacks/**: Pasta para os scripts que contêm os callbacks para interações dos usuários.
+- **pages/**: Pasta que contém os layouts das diferentes páginas do dashboard.
+- **callbacks**: Scripts que contêm os callbacks para interações dos usuários.
 
 ## Tecnologias Utilizadas
 
