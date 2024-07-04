@@ -28,7 +28,7 @@ unemployment_figure = {
     ],
     'layout': go.Layout(
         xaxis=dict(title='Data', showgrid=False),
-        yaxis=dict(title='Taxa de Desemprego', titlefont=dict(color='black'), tickfont=dict(color='black')),
+        yaxis=dict(title='Taxa de Desemprego'),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),
         annotations=[
@@ -71,7 +71,7 @@ ipca_figure = {
     ],
     'layout': go.Layout(
         xaxis=dict(title='Data', showgrid=False),
-        yaxis=dict(title='IPCA', titlefont=dict(color='black'), tickfont=dict(color='black')),
+        yaxis=dict(title='IPCA'),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),
         annotations=[
@@ -89,17 +89,18 @@ ipca_figure = {
 }
 
 layout = html.Div([
-    html.H2("Taxa de Desemprego", className='text-center my-4'),
+    html.H2("Desemprego e IPCA", className='text-center my-4'),
+    html.H3("Taxa de Desemprego", className='text-center my-4'),
     dcc.Graph(
         id='unemployment',
         figure=unemployment_figure
     ),
-    html.H2("IPCA Bens Não-Duráveis", className='text-center my-4'),
+    html.H3("IPCA de Bens Não-Duráveis", className='text-center my-4'),
     dcc.Graph(
         id='ipca',
         figure=ipca_figure
     ),
     html.P("Aqui você pode visualizar a evolução da taxa de desemprego e do IPCA de bens não-duráveis ao longo do tempo."),
-    html.P(["O ", html.Strong("IPCA"), " é o índice oficial de inflação do Brasil, calculado pelo IBGE. Ele mede a variação de preços de um conjunto de produtos e serviços consumidos pelas famílias brasileiras com rendimentos de 1 a 40 salários mínimos."]),
-    html.P(["A ", html.Strong("Taxa de Desemprego"), " é a proporção da força de trabalho que está desempregada e procura ativamente por um emprego remunerado."]),
+    html.P(["O ", html.Strong("IPCA"), " é o índice oficial de inflação do Brasil, calculado pelo IBGE. Ele mede a variação de preços de um conjunto de produtos e serviços consumidos pelas famílias brasileiras com rendimentos de 1 a 40 salários mínimos."], className='data-details'),
+    html.P(["A ", html.Strong("Taxa de Desemprego"), " é a proporção da força de trabalho que está desempregada e procura ativamente por um emprego remunerado."], className='data-details'),
 ])

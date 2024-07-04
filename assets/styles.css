@@ -1,0 +1,17 @@
+p, .dash-dropdown, .dash-graph, label{
+    margin: 0 0 0 10px;
+}
+
+h2, h3{
+    margin: 20px 0 0 0;
+}
+
+p{
+    text-align: center;
+}
+
+.data-details{
+    font-size: .8rem;
+    margin: 10px 0 0 15px;
+    text-align: left;
+}

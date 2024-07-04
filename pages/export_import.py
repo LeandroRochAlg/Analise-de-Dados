@@ -17,7 +17,8 @@ years = export_data['Ano'].unique()
 
 # Layout da página com o dropdown
 layout = html.Div([
-    html.H2("Exportação e Importação (2020-2024)", className='text-center my-4'),
+    html.H2("Exportação e importação ao longo dos anos", className='text-center my-4'),
+    html.Label("Selecione os países para visualizar a exportação e importação por ano:"),
     dcc.Dropdown(
         id='country-dropdown',
         options=[{'label': country, 'value': country} for country in countries],
@@ -25,20 +26,21 @@ layout = html.Div([
         multi=True
     ),
     dcc.Graph(id='export-importacao-por-ano'),
-    html.P(["Selecione os países para os quais o Brasil exportou/importou que desejar no menu suspenso acima para visualizar os dados."]),
-    html.P("Aqui você pode visualizar a evolução da exportação e importação de produtos entre 2018 e 2024."),
-    html.H2("Exportação e Importação (2020-2024)", className='text-center my-4'),
+    html.P("Acima, você pode visualizar a evolução da exportação e importação de produtos entre 2018 e 2024."),
+    html.H2(f"Exportação e importação por país", className='text-center my-4'),
+    html.Label("Selecione o ano para visualizar a exportação e importação por país:"),
     dcc.Dropdown(
         id='year-dropdown',
         options=[{'label': year, 'value': year} for year in years],
         value=years[0],  # Valor inicial como o primeiro ano disponível
         clearable=False
     ),
+    html.H3(f"Exportação", className='text-center my-4'),
     dcc.Graph(id='export-map'),
+    html.H3(f"Importação", className='text-center my-4'),
     dcc.Graph(id='import-map'),
-    html.P(["Selecione o ano desejado no menu suspenso acima para visualizar os dados."]),
     html.P(["Os mapas acima mostram a distribuição geográfica das exportações e importações do Brasil para os países exibidos."]),
-    html.P(["Os dados são referentes ao valor FOB (Free on Board), que é o valor total das mercadorias exportadas/importadas, incluindo o custo de transporte e seguro até o porto de destino."]),
+    html.P(["Os dados são referentes ao valor FOB (Free on Board), que é o valor total das mercadorias exportadas/importadas, incluindo o custo de transporte e seguro até o porto de destino."], className='data-details'),
 ])
 
 def register_export_import_callbacks(app):
@@ -114,7 +116,6 @@ def register_export_import_callbacks(app):
             color="Valor US$ FOB",
             hover_name="Países",
             color_continuous_scale=px.colors.sequential.Greens,
-            title=f'Exportação {selected_year}',
         )
 
         # Dados para importação
@@ -125,7 +126,6 @@ def register_export_import_callbacks(app):
             color="Valor US$ FOB",
             hover_name="Países",
             color_continuous_scale=px.colors.sequential.Greens,
-            title=f'Importação {selected_year}',
         )
 
         # Atualizar layout dos gráficos

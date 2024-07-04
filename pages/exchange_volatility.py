@@ -58,6 +58,7 @@ dynamic_figure = {
 
 layout = html.Div([
     html.H2("Taxa de Câmbio e Volatilidade", className='text-center my-4'),
+    html.Label("Selecione a taxa de câmbio:"),
     dcc.Dropdown(
         id='exchange-dropdown',
         options=[
@@ -68,10 +69,11 @@ layout = html.Div([
         value='BRL/USD'
     ),
     dcc.Graph(id='exchange-volatility-graph'),
+    html.P("Aqui você pode visualizar a evolução da taxa de câmbio e da volatilidade ao longo do tempo para o câmbio selecionado."),
     html.H2("Variação das moedas em relação ao dólar", className='text-center my-4'),
     dcc.Graph(figure=dynamic_figure),
-    html.P("Aqui você pode visualizar a evolução da taxa de câmbio e da volatilidade ao longo do tempo."),
-    html.P(["A ", html.Strong("Taxa de Câmbio"), " é o valor de uma moeda em relação a outra. Por exemplo, a taxa de câmbio BRL/USD indica quantos dólares americanos são necessários para comprar um real."]),
-    html.P(["A ", html.Strong("Volatilidade"), " é uma medida estatística que indica a variação dos preços de um ativo financeiro ao longo do tempo. Quanto maior a volatilidade, maior a incerteza em relação ao valor do ativo."]),
-    html.P(["O Índice do Dólar ", html.Strong("(DX-Y.NYB)"), " é um índice que mede o valor do dólar americano em relação a uma cesta de moedas estrangeiras."]),
+    html.P(["Acima, você pode comparar a evolução das taxas de câmbio BRL/USD, USD/EUR."]),
+    html.P(["A ", html.Strong("Taxa de Câmbio"), " é o valor de uma moeda em relação a outra. Por exemplo, a taxa de câmbio BRL/USD indica quantos dólares americanos são necessários para comprar um real."], className='data-details'),
+    html.P(["A ", html.Strong("Volatilidade"), " é uma medida estatística que indica a variação dos preços de um ativo financeiro ao longo do tempo. Quanto maior a volatilidade, maior a incerteza em relação ao valor do ativo."], className='data-details'),
+    html.P(["O Índice do Dólar ", html.Strong("(DX-Y.NYB)"), " é um índice que mede o valor do dólar americano em relação a uma cesta de moedas estrangeiras."], className='data-details'),
 ])
