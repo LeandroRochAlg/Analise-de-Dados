@@ -164,12 +164,14 @@ layout = html.Div([
         figure=commodity_figure
     ),
     html.P("Aqui você pode visualizar a evolução dos preços das principais commodities ao longo do tempo."),
+    html.Hr(),
     html.H3("Preço do Gás Natural", className='text-center my-4'),
     dcc.Graph(
         id='natural-gas-prices',
         figure=natural_gas_figure
     ),
     html.P("No gráfico acima, você pode comparar a evolução dos preços do gás natural nos EUA e na Europa ao longo do tempo."),
+    html.Hr(),
     html.H2("Commodities e seus tipos", className='text-center my-4'),
     html.Div(
         [
@@ -202,6 +204,7 @@ layout = html.Div([
     ),
     dcc.Graph(id='commodity-prices'),
     html.P("Aqui você pode visualizar a evolução dos preços de diferentes commodities ao longo do tempo. Os tipos de commodities são destacados por cores diferentes no gráfico."),
+    html.Hr(),
     html.P("Os dados são provenientes do Banco Mundial e refletem os preços de mercado das commodities.", className='data-details'),
     html.P([html.Strong("Commodities"), " são produtos primários que podem ser comprados e vendidos, como petróleo, soja, minério de ferro, entre outros."], className='data-details'),
 ])

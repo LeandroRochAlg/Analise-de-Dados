@@ -27,6 +27,7 @@ layout = html.Div([
     ),
     dcc.Graph(id='export-importacao-por-ano'),
     html.P("Acima, você pode visualizar a evolução da exportação e importação de produtos entre 2018 e 2024."),
+    html.Hr(),
     html.H2(f"Exportação e importação por país", className='text-center my-4'),
     html.Label("Selecione o ano para visualizar a exportação e importação por país:"),
     dcc.Dropdown(
@@ -40,6 +41,7 @@ layout = html.Div([
     html.H3(f"Importação", className='text-center my-4'),
     dcc.Graph(id='import-map'),
     html.P(["Os mapas acima mostram a distribuição geográfica das exportações e importações do Brasil para os países exibidos."]),
+    html.Hr(),
     html.P(["Os dados são referentes ao valor FOB (Free on Board), que é o valor total das mercadorias exportadas/importadas, incluindo o custo de transporte e seguro até o porto de destino."], className='data-details'),
 ])
 

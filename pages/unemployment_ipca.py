@@ -95,12 +95,15 @@ layout = html.Div([
         id='unemployment',
         figure=unemployment_figure
     ),
+    html.P("Aqui você pode visualizar a evolução da taxa de desemprego no Brasil ao longo do tempo."),
+    html.Hr(),
     html.H3("IPCA de Bens Não-Duráveis", className='text-center my-4'),
     dcc.Graph(
         id='ipca',
         figure=ipca_figure
     ),
-    html.P("Aqui você pode visualizar a evolução da taxa de desemprego e do IPCA de bens não-duráveis ao longo do tempo."),
+    html.P("Aqui você pode visualizar a evolução do IPCA de bens não-duráveis ao longo do tempo."),
+    html.Hr(),
     html.P(["O ", html.Strong("IPCA"), " é o índice oficial de inflação do Brasil, calculado pelo IBGE. Ele mede a variação de preços de um conjunto de produtos e serviços consumidos pelas famílias brasileiras com rendimentos de 1 a 40 salários mínimos."], className='data-details'),
     html.P(["A ", html.Strong("Taxa de Desemprego"), " é a proporção da força de trabalho que está desempregada e procura ativamente por um emprego remunerado."], className='data-details'),
 ])
