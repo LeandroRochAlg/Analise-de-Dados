@@ -34,7 +34,7 @@ Este repositório contém um dashboard interativo desenvolvido para analisar os 
 ![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/6e446640-4c98-482a-ad9e-9469c66fdcc1)
 
 ### Exportação e Importação
-![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/d995e687-5dc0-4248-9814-58a497ef898f)
+![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/8d329081-9be3-459c-916a-c7c4a0e9f825)
 
 ### Desemprego e IPCA
 ![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/693d5a10-b69d-4437-983c-cb414d375b29)
