@@ -52,7 +52,7 @@ def register_export_import_callbacks(app):
     )
     def update_export_import_graph(selected_countries):
         data = []
-        colors = ['green', 'red', 'blue', 'orange', 'purple', 'brown']  # Lista de cores para distinguir os países
+        colors = ['#0f5132', '#ffd700', '#5bc0de', '#2ca02c', '#d9534f', '#5cb85c', '#ff7f0e', '#1f77b4']  # Lista de cores para distinguir os países
         for i, country in enumerate(selected_countries):
             country_export_data = export_data[export_data['Países'] == country]
             country_import_data = import_data[import_data['Países'] == country]
