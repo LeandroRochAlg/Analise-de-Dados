@@ -28,16 +28,19 @@ Este repositório contém um dashboard interativo desenvolvido para analisar os 
 ## Telas e gráficos
 
 ### Home
-![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/e6488889-c2f9-4c53-a326-425c61f4ec84)
+![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/5a70e70f-0bf1-473a-831f-26e172f281be)
 
 ### Taxa de Câmbio e Volatilidade
-![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/b1b8e25c-7585-4bb1-89ed-abdbdd82f467)
+![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/6e446640-4c98-482a-ad9e-9469c66fdcc1)
 
 ### Exportação e Importação
-![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/06d31059-0c2d-4314-9a86-ca0b9c853f64)
+![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/d995e687-5dc0-4248-9814-58a497ef898f)
 
 ### Desemprego e IPCA
-![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/7da9bb53-926f-4754-819b-78258b925c65)
+![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/693d5a10-b69d-4437-983c-cb414d375b29)
+
+### Commodities
+![image](https://github.com/LeandroRochAlg/Analise-de-Dados/assets/87719561/d514bdac-51c0-496a-9a69-046d3cf51a11)
 
 ## Como Usar
 
