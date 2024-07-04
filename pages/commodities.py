@@ -56,7 +56,7 @@ commodity_figure = {
                 xref='paper',
                 yref='paper',
                 showarrow=False,
-                text='Fonte: Banco Mundial',
+                text='<a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank">Fonte: Banco Mundial</a>',
                 font=dict(size=12),
             )
         ]
@@ -106,7 +106,7 @@ natural_gas_figure = {
                 xref='paper',
                 yref='paper',
                 showarrow=False,
-                text='Fonte: Banco Mundial',
+                text='<a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank">Fonte: Banco Mundial</a>',
                 font=dict(size=12),
             )
         ]
@@ -180,7 +180,8 @@ layout = html.Div([
                     html.H3("Tipos de Commodities mais exportadas pelo Brasil", className='text-center my-4'),
                     dcc.Graph(
                         id='export-pie',
-                        figure=export_fig)
+                        figure=export_fig
+                    )
                 ]
             ),
             html.Hr(),
@@ -189,11 +190,13 @@ layout = html.Div([
                     html.H3("Tipos de Commodities mais importadas pelo Brasil", className='text-center my-4'),
                     dcc.Graph(
                         id='import-pie',
-                        figure=import_fig)
+                        figure=import_fig
+                    )
                 ]
             )
         ], className='pie-charts'
     ),
+    html.P(html.A("Dados de 2023. Fonte: agência gov", href='https://agenciagov.ebc.com.br/noticias/202401/exportacoes-do-agronegocio-fecham-2023-com-us-166-55-bilhoes-em-vendas#:~:text=Em%20rela%C3%A7%C3%A3o%20ao%20valor%20exportado,florestais%20(8%2C6%25).', target='_blank'), className='data-details'),
     html.Label("Selecione a commodity para visualizar o gráfico de preços:"),
     dcc.Dropdown(
         id='commodity-dropdown',
@@ -257,7 +260,7 @@ def register_commodities_callbacks(app):
                         xref='paper',
                         yref='paper',
                         showarrow=False,
-                        text='Fonte: Banco Mundial',
+                        text='<a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank">Fonte: Banco Mundial</a>',
                         font=dict(size=12),
                     )
                 ]
