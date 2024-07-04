@@ -3,7 +3,8 @@ p, .dash-dropdown, .dash-graph, label{
 }
 
 h2, h3{
-    margin: 20px 0 0 0;
+    margin: 20px auto 0 auto;
+    max-width: 300px;
 }
 
 p{
@@ -14,4 +15,14 @@ p{
     font-size: .8rem;
     margin: 10px 0 0 15px;
     text-align: left;
+}
+
+.pie-charts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#export-pie, #import-pie{
+    max-width: fit-content;
 }
