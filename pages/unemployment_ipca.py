@@ -9,7 +9,7 @@ unemployment_figure = {
             y=unemployment_data_filtered['Taxa'],
             mode='lines',
             name='Taxa de Desemprego',
-            line=dict(color='purple')
+            line=dict(color='#0f5132')
         ),
         go.Scatter(
             x=[pandemic_start, pandemic_start],
@@ -28,7 +28,7 @@ unemployment_figure = {
     ],
     'layout': go.Layout(
         xaxis=dict(title='Data', showgrid=False),
-        yaxis=dict(title='Taxa de Desemprego', titlefont=dict(color='purple'), tickfont=dict(color='purple')),
+        yaxis=dict(title='Taxa de Desemprego', titlefont=dict(color='black'), tickfont=dict(color='black')),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),
         annotations=[
@@ -52,7 +52,7 @@ ipca_figure = {
             y=ipca_filtered_data['valor'],
             mode='lines',
             name='IPCA',
-            line=dict(color='orange')
+            line=dict(color='#0f5132')
         ),
             go.Scatter(
             x=[pandemic_start, pandemic_start],
@@ -71,7 +71,7 @@ ipca_figure = {
     ],
     'layout': go.Layout(
         xaxis=dict(title='Data', showgrid=False),
-        yaxis=dict(title='IPCA', titlefont=dict(color='orange'), tickfont=dict(color='orange')),
+        yaxis=dict(title='IPCA', titlefont=dict(color='black'), tickfont=dict(color='black')),
         legend=dict(x=0, y=1.2),
         margin=dict(l=50, r=50, t=50, b=50),
         annotations=[

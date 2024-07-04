@@ -85,14 +85,14 @@ def register_callbacks(app):
                     y=data['MediaValue'],
                     mode='lines',
                     name=name,
-                    line=dict(color='blue')
+                    line=dict(color='#0f5132')
                 ),
                 go.Scatter(
                     x=data['Date'],
                     y=data['Volatility'],
                     mode='lines',
                     name=f'Volatilidade {name}',
-                    line=dict(color='rgba(0, 0, 255, 0.5)'),
+                    line=dict(color='rgb(0, 255, 0)'),
                     yaxis='y2'
                 ),
                 go.Scatter(
@@ -113,8 +113,8 @@ def register_callbacks(app):
             'layout': go.Layout(
                 title=f'{name}',
                 xaxis=dict(title='Data', showgrid=False),
-                yaxis=dict(title=name, titlefont=dict(color='blue'), tickfont=dict(color='blue'), showgrid=False),
-                yaxis2=dict(title='Volatilidade', titlefont=dict(color='rgba(0, 0, 255, 0.5)'), tickfont=dict(color='rgba(0, 0, 255, 0.5)'), overlaying='y', side='right', showgrid=False),
+                yaxis=dict(title=name, titlefont=dict(color='#0f5132'), tickfont=dict(color='#0f5132'), showgrid=False),
+                yaxis2=dict(title='Volatilidade', titlefont=dict(color='rgb(0, 255, 0)'), tickfont=dict(color='rgb(0, 255, 0)'), overlaying='y', side='right', showgrid=False),
                 legend=dict(x=0, y=1.2),
                 margin=dict(l=50, r=50, t=50, b=50),
                 annotations=[
