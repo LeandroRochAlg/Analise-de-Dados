@@ -26,3 +26,12 @@ p{
 #export-pie, #import-pie{
     max-width: fit-content;
 }
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 80vh;
+}
