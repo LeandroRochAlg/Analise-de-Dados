@@ -6,7 +6,7 @@ import os
 def load_data():
     base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
-    user_data_path = os.path.join(base_path, 'Dados Tratados', 'USD-BRL-Tratado.csv')
+    user_data_path = os.path.join(base_path, 'Dados Tratados', 'USD-BRL-TRATADO.csv')
     user_data = pd.read_csv(user_data_path)
     user_data['Date'] = pd.to_datetime(user_data['Date'])
     user_data.sort_values('Date', inplace=True)
