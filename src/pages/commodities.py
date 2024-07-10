@@ -160,7 +160,7 @@ layout = html.Div([
     html.H2("Análise de Commodities", className='text-center my-4'),
     html.H3("Preços de Commodities", className='text-center'),
     dcc.Graph(
-        id='commodity-prices',
+        id='commodity-prices-specific',
         figure=commodity_figure
     ),
     html.P("Aqui você pode visualizar a evolução dos preços das principais commodities ao longo do tempo."),
